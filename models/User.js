@@ -18,7 +18,6 @@ const userSchema = new Schema({
 
 userSchema.pre("save", async function (next) {
   const user = this;
-
   if (!user.isModified("password")) return next();
 
   try {
@@ -35,4 +34,4 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
-export const User = model("user", userSchema);
+export const User = model("User", userSchema);

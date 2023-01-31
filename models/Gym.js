@@ -7,6 +7,7 @@ const gymSchema = new Schema({
     required: true,
     unique: true,
   },
+  //revisar campos
   class: {
     type: Array,
   },

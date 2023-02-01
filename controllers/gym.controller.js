@@ -15,7 +15,7 @@ export const getGym = async (req, res) => {
 export const getGyms = async (req, res) => {
   try {
     const gyms = await Gym.find();
-
+    if(!gyms) throw Error("No se encontraron gimnasios")
     res.json({ gyms });
   } catch (error) {
     console.log(error);

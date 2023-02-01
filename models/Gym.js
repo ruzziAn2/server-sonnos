@@ -5,30 +5,16 @@ const gymSchema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
   },
-  //revisar campos
-  class: {
-    type: Array,
+  address: {
+    type: String,
+    required: true,
   },
-  location: {
-    city: {
-      type: String,
-      required: true,
-    },
-    address: {
-      type: String,
-      required: true,
-    },
-    phone: {
-      type: Number,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    }
+  // en la solicitud mandar el email que con eso capturará el _id
+  manager: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
   },
 });
 

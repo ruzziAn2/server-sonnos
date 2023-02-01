@@ -1,5 +1,5 @@
 import { User } from "../models/User.js";
-import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
 import { generateRefreshToken, generateToken } from "../utils/tokenManager.js";
 
 export const register = async (req, res) => {
@@ -13,8 +13,10 @@ export const register = async (req, res) => {
     await user.save();
 
     //Generar el token JWT
+    const { token, expiresIn } = generateToken(user._id);
+    generateRefreshToken(user.id, res);
 
-    return res.status(201).json({ ok: true });
+    return res.status(201).json({ token, expiresIn });
   } catch (error) {
     console.log(error);
     //validando por defecto mongoose
